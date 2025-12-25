@@ -1,0 +1,15 @@
+services:
+  php82_laravel_zettai_reach_sms_client:
+    container_name: php82_laravel_zettai_reach_sms_client
+    build:
+      context: .
+      dockerfile: ./.docker/dockerfile/PHP82_Dockerfile
+    volumes:
+      - .:/var/www/html
+    init: true
+    restart: unless-stopped
+    command: >
+      bash -c '
+        composer update;
+        tail -f /dev/null;
+      '
