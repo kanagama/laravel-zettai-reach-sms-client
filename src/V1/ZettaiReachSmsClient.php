@@ -12,6 +12,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReser
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Request\CancelReservationRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Request\CancelReservationAllRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -22,6 +25,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelRes
  * @method static array checkReservation(?string $clientTag = null, ?string $scheduleTime = null, ?string $scheduleDate = null, ?string $groupTag = null) CommonMT 予約送信確認
  * @method array cancelReservation(?string $clientTag = null, ?string $scheduleTime = null, ?string $scheduleDate = null, ?string $groupTag = null) CommonMT 予約送信キャンセル
  * @method static array cancelReservation(?string $clientTag = null, ?string $scheduleTime = null, ?string $scheduleDate = null, ?string $groupTag = null) CommonMT 予約送信キャンセル
+ * @method array cancelReservationAll(string $scheduleDate) CommonMT 予約送信一括キャンセル
+ * @method static array cancelReservationAll(string $scheduleDate) CommonMT 予約送信一括キャンセル
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -29,15 +34,18 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT 送信
      * CommonMT 予約送信確認
      * CommonMT 予約送信キャンセル
+     * CommonMT 予約送信一括キャンセル
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
      * @param  CancelReservationDomain  $cancelReservationDomain
+     * @param  CancelReservationAllDomain  $cancelReservationAllDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
         private readonly CheckReservationDomainInterface $checkReservationDomain,
         private readonly CancelReservationDomainInterface $cancelReservationDomain,
+        private readonly CancelReservationAllDomainInterface $cancelReservationAllDomain,
     ) {
     }
 
@@ -147,5 +155,21 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         );
 
         return $this->cancelReservationDomain->execute($cancelReservationRequest);
+    }
+
+    /**
+     * CommonMT 予約送信一括キャンセル
+     *
+     * @param  string  $scheduleDate
+     * @return array
+     */
+    public function cancelReservationAllMethod(
+        string $scheduleDate,
+    ): array {
+        $cancelReservationAllRequest = new CancelReservationAllRequest(
+            scheduleDate: $scheduleDate,
+        );
+
+        return $this->cancelReservationAllDomain->execute($cancelReservationAllRequest);
     }
 }
