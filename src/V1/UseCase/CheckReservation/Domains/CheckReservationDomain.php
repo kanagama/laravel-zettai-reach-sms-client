@@ -13,8 +13,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Request\CheckReser
 final class CheckReservationDomain implements CheckReservationDomainInterface
 {
     /**
-     * @param  ZettaiReachHttp  $http
-     * @param  ZettaiReachResponse  $response
+     * @param  ZettaiReachHttpInterface  $http
+     * @param  ZettaiReachResponseInterface  $response
      */
     public function __construct(
         private readonly ZettaiReachHttpInterface $http,
@@ -23,7 +23,7 @@ final class CheckReservationDomain implements CheckReservationDomainInterface
     }
 
     /**
-     * @param  CheckReservationRequest  $request
+     * @param  CheckReservationRequestInterface  $request
      * @return array
      */
     public function execute(CheckReservationRequestInterface $request): array
