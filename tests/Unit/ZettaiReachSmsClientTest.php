@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace Kanagama\ZettaiReachSmsClient\Tests\Unit\V1;
 
-use GuzzleHttp\Psr7\Response as Psr7Response;
-use Illuminate\Http\Client\Response;
 use Kanagama\ZettaiReachSmsClient\Tests\TestCase;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttpInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\ZettaiReachSmsClient;
 use Kanagama\ZettaiReachSmsClient\V1\ZettaiReachSmsClientInterface;

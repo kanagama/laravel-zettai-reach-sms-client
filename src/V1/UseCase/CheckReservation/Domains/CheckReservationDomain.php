@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains;
 
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttp;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttpInterface;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponse;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponseInterface;
+use Kanagama\ZettaiReachSmsClient\Http\ZettaiReachHttp;
+use Kanagama\ZettaiReachSmsClient\Http\ZettaiReachHttpInterface;
+use Kanagama\ZettaiReachSmsClient\Http\ZettaiReachResponse;
+use Kanagama\ZettaiReachSmsClient\Http\ZettaiReachResponseInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Request\CheckReservationRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Request\CheckReservationRequestInterface;
 

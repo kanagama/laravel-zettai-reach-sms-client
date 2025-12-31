@@ -63,12 +63,12 @@ final class ZettaiReachSmsClientServiceProvider extends ServiceProvider
         // Http
         //
         $this->app->bind(
-            \Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttpInterface::class,
-            \Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttp::class,
+            \Kanagama\ZettaiReachSmsClient\Http\ZettaiReachHttpInterface::class,
+            \Kanagama\ZettaiReachSmsClient\Http\ZettaiReachHttp::class,
         );
         $this->app->bind(
-            \Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponseInterface::class,
-            \Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponse::class,
+            \Kanagama\ZettaiReachSmsClient\Http\ZettaiReachResponseInterface::class,
+            \Kanagama\ZettaiReachSmsClient\Http\ZettaiReachResponse::class,
         );
     }
 

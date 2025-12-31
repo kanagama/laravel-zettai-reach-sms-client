@@ -113,7 +113,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      */
     public function __call(string $name, array $arguments): array
     {
-        return self::__callStatic($name, $arguments);
+        return $this->{$name . 'Method'}(...$arguments);
     }
 
     /**
