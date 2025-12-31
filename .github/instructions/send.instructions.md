@@ -1,5 +1,5 @@
 ---
-applyTo: src/**/*.php
+applyTo: src/UseCase/Send/**/*.php
 ---
 
 # CommonMT 送信
