@@ -35,7 +35,6 @@ final class TemplateRequest implements TemplateRequestInterface
     }
 
     /**
-     * @test
      * @return array
      */
     public function toAll(): array
@@ -48,7 +47,6 @@ final class TemplateRequest implements TemplateRequestInterface
     }
 
     /**
-     * @test
      * @return array
      */
     public function toArray(): array
