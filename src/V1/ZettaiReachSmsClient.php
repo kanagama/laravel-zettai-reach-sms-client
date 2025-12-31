@@ -21,8 +21,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReser
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
     /**
-     * @param  SendDomain  $sendDomain
-     * @param  CheckReservationDomain  $checkReservationDomain
+     * @param  SendDomainInterface  $sendDomain
+     * @param  CheckReservationDomainInterface  $checkReservationDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
