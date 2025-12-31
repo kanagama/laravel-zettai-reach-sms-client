@@ -36,7 +36,7 @@ final class ZettaiReachSmsClientTest extends TestCase
         $http = app()->make(ZettaiReachSmsClientInterface::class);
 
         $response = $http->send(
-            phoneNumber: '09028550632',
+            phoneNumber: '09012345678',
             message: 'ユニットテストメッセージ',
         );
 
@@ -66,7 +66,7 @@ final class ZettaiReachSmsClientTest extends TestCase
         $this->instance(SendDomainInterface::class, $sendDomainMock);
 
         $response = ZettaiReachSmsClient::send(
-            phoneNumber: '09028550632',
+            phoneNumber: '09012345678',
             message: 'ユニットテストメッセージ',
         );
 
