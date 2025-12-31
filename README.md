@@ -593,4 +593,4 @@ public function getSuccessCount(): void
 
 ## ライセンス
 
-MIT
+このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルをご覧ください。
