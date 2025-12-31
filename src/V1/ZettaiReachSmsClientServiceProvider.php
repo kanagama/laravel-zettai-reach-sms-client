@@ -26,6 +26,10 @@ final class ZettaiReachSmsClientServiceProvider extends ServiceProvider
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomainInterface::class,
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomain::class,
         );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomain::class,
+        );
 
         //
         // Http

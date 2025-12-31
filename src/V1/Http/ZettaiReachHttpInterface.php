@@ -17,4 +17,14 @@ interface ZettaiReachHttpInterface
         string $url,
         array $params
     ): Response|PromiseInterface;
+
+    /**
+     * @param string $url
+     * @param array $query
+     * @return Response|PromiseInterface
+     */
+    public function get(
+        string $url,
+        array $query,
+    ): Response|PromiseInterface;
 }
