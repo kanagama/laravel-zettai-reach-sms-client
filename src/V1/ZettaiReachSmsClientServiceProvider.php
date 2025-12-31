@@ -42,6 +42,10 @@ final class ZettaiReachSmsClientServiceProvider extends ServiceProvider
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterface::class,
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomain::class,
         );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain::class,
+        );
 
         //
         // Http

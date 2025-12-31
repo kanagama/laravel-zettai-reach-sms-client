@@ -18,6 +18,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\Cancel
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Request\StatusRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Request\ShortenUrlRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -32,6 +35,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterfac
  * @method static array cancelReservationAll(string $scheduleDate) CommonMT 予約送信一括キャンセル
  * @method array status(string $clientTag) CommonMT ステータス取得
  * @method static array status(string $clientTag) CommonMT ステータス取得
+ * @method array shortenUrl(string $longUrl, ?string $domain = null) ショート URL 登録
+ * @method static array shortenUrl(string $longUrl, ?string $domain = null) ショート URL 登録
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -41,12 +46,14 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT 予約送信キャンセル
      * CommonMT 予約送信一括キャンセル
      * CommonMT ステータス取得
+     * ショート URL 登録
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
      * @param  CancelReservationDomain  $cancelReservationDomain
      * @param  CancelReservationAllDomain  $cancelReservationAllDomain
      * @param  StatusDomain  $statusDomain
+     * @param  ShortenUrlDomain  $shortenUrlDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
@@ -54,6 +61,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         private readonly CancelReservationDomainInterface $cancelReservationDomain,
         private readonly CancelReservationAllDomainInterface $cancelReservationAllDomain,
         private readonly StatusDomainInterface $statusDomain,
+        private readonly ShortenUrlDomainInterface $shortenUrlDomain,
     ) {
     }
 
@@ -195,5 +203,24 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         );
 
         return $this->statusDomain->execute($statusRequest);
+    }
+
+    /**
+     * ショート URL 登録
+     *
+     * @param  string  $longUrl
+     * @param  string|null  $domain
+     * @return array
+     */
+    public function shortenUrlMethod(
+        string $longUrl,
+        ?string $domain = null,
+    ): array {
+        $shortenUrlRequest = new ShortenUrlRequest(
+            longUrl: $longUrl,
+            domain: $domain,
+        );
+
+        return $this->shortenUrlDomain->execute($shortenUrlRequest);
     }
 }
