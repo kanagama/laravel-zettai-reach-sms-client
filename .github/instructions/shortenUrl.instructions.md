@@ -1,5 +1,5 @@
 ---
-applyTo: src/V1/UseCase/ShortenUrl/**/*.php
+applyTo: src/UseCase/ShortenUrl/**/*.php
 ---
 
 # ショート URL 登録
@@ -23,9 +23,9 @@ applyTo: src/V1/UseCase/ShortenUrl/**/*.php
 
 | responseCode | responseMessage | 説明 |
 | ---- | ---- | ---- |
-| 0 | Success. | リクエストの受付が成功しました。 |
+| 0 | Success. | リクエストが成功しました。 |
 | 100 | Required {項目名}. | {項目名}の項目が不足しています。 |
-| 110 | Invalid {項目名}. | {項目名}の項目の内容が不正です。 |
+| 110 | Invalid {項目名}. | {項目名}の項目が不正です。 |
 | 120 | {項目名} too long. | {項目名}の長さが上限を超過しています。 |
 | 500 | System error. | 上記で定義外のエラーが発生しています。 |
 
