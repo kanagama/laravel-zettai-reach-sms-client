@@ -14,7 +14,7 @@ interface ZettaiReachSmsClientInterface
      * @param  string|null  $clientTag
      * @param  string|null  $scheduleTime
      * @param  string|null  $groupTag
-     * @return void
+     * @return array
      */
     public function sendMethod(
         string $phoneNumber,
