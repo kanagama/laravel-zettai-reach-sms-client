@@ -21,6 +21,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterfac
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Request\ShortenUrlRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Request\TemplateRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -37,6 +40,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain
  * @method static array status(string $clientTag) CommonMT ステータス取得
  * @method array shortenUrl(string $longUrl, ?string $domain = null) ショート URL 登録
  * @method static array shortenUrl(string $longUrl, ?string $domain = null) ショート URL 登録
+ * @method array template() CommonMT 登録済み定型文取得
+ * @method static array template() CommonMT 登録済み定型文取得
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -47,6 +52,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT 予約送信一括キャンセル
      * CommonMT ステータス取得
      * ショート URL 登録
+     * CommonMT 登録済み定型文取得
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
@@ -54,6 +60,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * @param  CancelReservationAllDomain  $cancelReservationAllDomain
      * @param  StatusDomain  $statusDomain
      * @param  ShortenUrlDomain  $shortenUrlDomain
+     * @param  TemplateDomain  $templateDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
@@ -62,6 +69,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         private readonly CancelReservationAllDomainInterface $cancelReservationAllDomain,
         private readonly StatusDomainInterface $statusDomain,
         private readonly ShortenUrlDomainInterface $shortenUrlDomain,
+        private readonly TemplateDomainInterface $templateDomain,
     ) {
     }
 
@@ -222,5 +230,17 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         );
 
         return $this->shortenUrlDomain->execute($shortenUrlRequest);
+    }
+
+    /**
+     * CommonMT 登録済み定型文取得
+     *
+     * @return array
+     */
+    public function templateMethod(): array
+    {
+        $templateRequest = new TemplateRequest();
+
+        return $this->templateDomain->execute($templateRequest);
     }
 }
