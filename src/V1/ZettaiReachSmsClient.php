@@ -24,6 +24,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Request\TemplateRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Request\NumberCleaningRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -42,6 +45,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInte
  * @method static array shortenUrl(string $longUrl, ?string $domain = null) ショート URL 登録
  * @method array template() CommonMT 登録済み定型文取得
  * @method static array template() CommonMT 登録済み定型文取得
+ * @method array numberCleaning(string $phoneNumber) CommonMT 電話番号クリーニング
+ * @method static array numberCleaning(string $phoneNumber) CommonMT 電話番号クリーニング
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -53,6 +58,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT ステータス取得
      * ショート URL 登録
      * CommonMT 登録済み定型文取得
+     * CommonMT 電話番号クリーニング
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
@@ -61,6 +67,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * @param  StatusDomain  $statusDomain
      * @param  ShortenUrlDomain  $shortenUrlDomain
      * @param  TemplateDomain  $templateDomain
+     * @param  NumberCleaningDomain  $numberCleaningDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
@@ -70,6 +77,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         private readonly StatusDomainInterface $statusDomain,
         private readonly ShortenUrlDomainInterface $shortenUrlDomain,
         private readonly TemplateDomainInterface $templateDomain,
+        private readonly NumberCleaningDomainInterface $numberCleaningDomain,
     ) {
     }
 
@@ -242,5 +250,21 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         $templateRequest = new TemplateRequest();
 
         return $this->templateDomain->execute($templateRequest);
+    }
+
+    /**
+     * CommonMT 電話番号クリーニング
+     *
+     * @param  string  $phoneNumber
+     * @return array
+     */
+    public function numberCleaningMethod(
+        string $phoneNumber,
+    ): array {
+        $numberCleaningRequest = new NumberCleaningRequest(
+            phoneNumber: $phoneNumber,
+        );
+
+        return $this->numberCleaningDomain->execute($numberCleaningRequest);
     }
 }
