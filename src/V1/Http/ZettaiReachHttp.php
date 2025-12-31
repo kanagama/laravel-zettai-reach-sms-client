@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Kanagama\ZettaiReachSmsClient\V1\Http;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Factory as HttpFactory;
-use Illuminate\Http\Client\Request;
 use Illuminate\Http\Client\Response;
 
 final class ZettaiReachHttp implements ZettaiReachHttpInterface
 {
     /**
-     * @var Request
+     * @var HttpFactory
      */
-    private readonly Request $http;
+    private readonly HttpFactory $http;
 
     /**
      * @param HttpFactory $httpFactory
@@ -29,12 +29,12 @@ final class ZettaiReachHttp implements ZettaiReachHttpInterface
      *
      * @param  string $url
      * @param  array $params
-     * @return Response
+     * @return Response|PromiseInterface
      */
     public function postForm(
         string $url,
         array $params
-    ): Response {
+    ): Response|PromiseInterface {
         return $this->http->post($url, $params);
     }
 
@@ -43,12 +43,12 @@ final class ZettaiReachHttp implements ZettaiReachHttpInterface
      *
      * @param string $url
      * @param array $query
-     * @return Response
+     * @return Response|PromiseInterface
      */
     public function get(
         string $url,
         array $query,
-    ): Response {
+    ): Response|PromiseInterface {
         return $this->http->get($url, $query);
     }
 }

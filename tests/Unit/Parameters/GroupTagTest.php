@@ -13,8 +13,8 @@ final class GroupTagTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('GroupTag')]
-    #[Group('__construct')]
     public function 正しい形式の場合、例外が発生しない(): void
     {
         $this->expectNotToPerformAssertions();
@@ -24,7 +24,9 @@ final class GroupTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('GroupTag')]
+    #[Group('error')]
     public function 不正な形式の場合、例外が発生する(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -34,6 +36,7 @@ final class GroupTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('GroupTag')]
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
@@ -45,6 +48,7 @@ final class GroupTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('GroupTag')]
     public function 文字数が200を超える場合、例外が発生する(): void
     {
@@ -56,6 +60,7 @@ final class GroupTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('GroupTag')]
     public function 空文字の場合、例外が発生する(): void
     {

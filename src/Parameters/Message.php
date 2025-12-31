@@ -23,6 +23,7 @@ final class Message implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

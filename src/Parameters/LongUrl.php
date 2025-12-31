@@ -24,6 +24,7 @@ final class LongUrl implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

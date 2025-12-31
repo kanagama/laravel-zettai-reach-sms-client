@@ -13,6 +13,7 @@ final class MonthTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('Month')]
     public function 不正な形式の場合、例外が発生する(): void
     {
@@ -23,6 +24,7 @@ final class MonthTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('Month')]
     public function 存在しない年月の場合、例外が発生する(): void
     {
@@ -33,6 +35,7 @@ final class MonthTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('Month')]
     public function 将来の年月の場合、例外が発生する(): void
     {
@@ -44,6 +47,7 @@ final class MonthTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('Month')]
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void

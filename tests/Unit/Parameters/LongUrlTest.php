@@ -13,6 +13,7 @@ final class LongUrlTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('LongUrl')]
     public function 文字数が2048を超える場合、例外が発生する(): void
     {
@@ -24,6 +25,7 @@ final class LongUrlTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('LongUrl')]
     public function 空文字の場合、例外が発生する(): void
     {
@@ -34,6 +36,7 @@ final class LongUrlTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('LongUrl')]
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void

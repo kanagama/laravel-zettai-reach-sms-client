@@ -31,6 +31,7 @@ final class Month implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

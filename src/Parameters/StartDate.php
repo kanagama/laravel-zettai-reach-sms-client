@@ -26,6 +26,7 @@ final class StartDate implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

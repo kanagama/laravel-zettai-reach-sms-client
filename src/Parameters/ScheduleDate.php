@@ -29,6 +29,7 @@ final class ScheduleDate implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

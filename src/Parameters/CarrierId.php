@@ -50,6 +50,7 @@ final class CarrierId implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string
@@ -60,6 +61,7 @@ final class CarrierId implements ValueObjectInterface
     /**
      * au の値を取得
      *
+     * @test
      * @return string
      */
     public static function getAu(): string
@@ -70,6 +72,7 @@ final class CarrierId implements ValueObjectInterface
     /**
      * ドコモ の値を取得
      *
+     * @test
      * @return string
      */
     public static function getDocomo(): string
@@ -80,6 +83,7 @@ final class CarrierId implements ValueObjectInterface
     /**
      * ソフトバンク の値を取得
      *
+     * @test
      * @return string
      */
     public static function getSoftbank(): string
@@ -90,6 +94,7 @@ final class CarrierId implements ValueObjectInterface
     /**
      * 楽天 の値を取得
      *
+     * @test
      * @return string
      */
     public static function getRakuten(): string
@@ -98,6 +103,7 @@ final class CarrierId implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return array
      */
     public static function toArray(): array

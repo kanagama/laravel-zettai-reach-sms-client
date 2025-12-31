@@ -14,7 +14,8 @@ final class CarrierIdTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('value')]
     #[DataProvider('objectProvider')]
     public function オブジェクト化出来る(
@@ -48,7 +49,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('getAu')]
     public function auの値を取得できる()
     {
@@ -57,7 +59,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('getDocomo')]
     public function docomoの値を取得できる()
     {
@@ -66,7 +69,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('getSoftbank')]
     public function softbankの値を取得できる()
     {
@@ -75,7 +79,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('getRakuten')]
     public function 楽天の値を取得できる()
     {
@@ -84,7 +89,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('toArray')]
     public function 配列の要素数と定数の数が一致する()
     {
@@ -99,7 +105,8 @@ final class CarrierIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('carrierId')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
     #[Group('toArray')]
     public function toArrayの内容が正しい()
     {

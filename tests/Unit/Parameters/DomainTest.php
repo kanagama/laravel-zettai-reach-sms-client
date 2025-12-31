@@ -12,6 +12,7 @@ final class DomainTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('Domain')]
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void

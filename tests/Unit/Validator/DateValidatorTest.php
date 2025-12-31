@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Kanagama\ZettaiReachSmsClient\Tests\Unit\Validator;
 
+use Carbon\CarbonImmutable;
 use Kanagama\ZettaiReachSmsClient\Validator\DateValidator;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,16 +12,29 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 final class DateValidatorTest extends TestCase
 {
+    /**
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        // Carbonの現在日時を固定 (2025-12-25)
+        CarbonImmutable::setTestNow(
+            CarbonImmutable::create(2025, 12, 25, 0, 0, 0),
+        );
+    }
+
     #[Test]
     #[Group('unit')]
     #[Group('DateValidator')]
     #[Group('isYmdFormat')]
     #[DataProvider('isYmdFormatProvider')]
     public function isYmdFormatが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isYmdFormat($input));
+        $this->assertSame($expected, DateValidator::isYmdFormat($value));
     }
 
     /**
@@ -54,10 +68,10 @@ final class DateValidatorTest extends TestCase
     #[Group('isYmFormat')]
     #[DataProvider('isYmFormatProvider')]
     public function isYmFormatが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isYmFormat($input));
+        $this->assertSame($expected, DateValidator::isYmFormat($value));
     }
 
     /**
@@ -91,12 +105,15 @@ final class DateValidatorTest extends TestCase
     #[Group('isYmdHiFormat')]
     #[DataProvider('isYmdHiFormatProvider')]
     public function isYmdHiFormatが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isYmdHiFormat($input));
+        $this->assertSame($expected, DateValidator::isYmdHiFormat($value));
     }
 
+    /**
+     * @return array
+     */
     public static function isYmdHiFormatProvider(): array
     {
         return [
@@ -126,15 +143,55 @@ final class DateValidatorTest extends TestCase
     #[Test]
     #[Group('unit')]
     #[Group('DateValidator')]
+    #[Group('isYmdHiValidDateTime')]
+    #[DataProvider('isYmdHiValidDateTimeProvider')]
+    public function isYmdHiValidDateTimeが正しく判定できる(
+        string $value,
+        bool $expected,
+    ): void {
+        $this->assertSame($expected, DateValidator::isYmdHiValidDateTime($value));
+    }
+
+    /**
+     * @return array
+     */
+    public static function isYmdHiValidDateTimeProvider(): array
+    {
+        return [
+            '正しい日時' => [
+                'value'    => '2024-02-29 23:59', // うるう年
+                'expected' => true,
+            ],
+            '不正な日付' => [
+                'value'    => '2023-02-29 23:59', // うるう年でない
+                'expected' => false,
+            ],
+            '不正な時刻' => [
+                'value'    => '2024-01-31 24:00',
+                'expected' => false,
+            ],
+            '形式不正' => [
+                'value'    => '2024/01/01 12:00',
+                'expected' => false,
+            ],
+        ];
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('DateValidator')]
     #[Group('isNotBeforeTwoYearsAgo')]
     #[DataProvider('isNotBeforeTwoYearsAgoProvider')]
     public function isNotBeforeTwoYearsAgoが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isNotBeforeTwoYearsAgo($input));
+        $this->assertSame($expected, DateValidator::isNotBeforeTwoYearsAgo($value));
     }
 
+    /**
+     * @return array
+     */
     public static function isNotBeforeTwoYearsAgoProvider(): array
     {
         // 現在日付: 2025-12-25
@@ -172,12 +229,15 @@ final class DateValidatorTest extends TestCase
     #[Group('isYmdValidDate')]
     #[DataProvider('isYmdValidDateProvider')]
     public function isYmdValidDateが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isYmdValidDate($input));
+        $this->assertSame($expected, DateValidator::isYmdValidDate($value));
     }
 
+    /**
+     * @return array
+     */
     public static function isYmdValidDateProvider(): array
     {
         return [
@@ -210,12 +270,15 @@ final class DateValidatorTest extends TestCase
     #[Group('isYmValidDate')]
     #[DataProvider('isYmValidDateProvider')]
     public function isYmValidDateが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isYmValidDate($input));
+        $this->assertSame($expected, DateValidator::isYmValidDate($value));
     }
 
+    /**
+     * @return array
+     */
     public static function isYmValidDateProvider(): array
     {
         return [
@@ -244,10 +307,10 @@ final class DateValidatorTest extends TestCase
     #[Group('isNotAfterThisMonth')]
     #[DataProvider('isNotAfterThisMonthProvider')]
     public function isNotAfterThisMonthが正しく判定できる(
-        string $input,
+        string $value,
         bool $expected,
     ): void {
-        $this->assertSame($expected, DateValidator::isNotAfterThisMonth($input));
+        $this->assertSame($expected, DateValidator::isNotAfterThisMonth($value));
     }
 
     /**

@@ -14,14 +14,15 @@ final class PhoneNumberTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('PhoneNumber')]
     #[DataProvider('phoneNumberProvider')]
     public function 正しい電話番号が設定できる(
-        string $input,
+        string $value,
     ): void {
-        $phoneNumber = new PhoneNumber($input);
+        $phoneNumber = new PhoneNumber($value);
 
-        $this->assertSame($input, $phoneNumber->value());
+        $this->assertSame($value, $phoneNumber->value());
     }
 
     /**
@@ -47,14 +48,15 @@ final class PhoneNumberTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('PhoneNumber')]
     #[DataProvider('invalidPhoneNumberProvider')]
     public function 不正な電話番号が設定された場合例外が投げられる(
-        string $input,
+        string $value,
     ): void {
         $this->expectException(InvalidArgumentException::class);
 
-        new PhoneNumber($input);
+        new PhoneNumber($value);
     }
 
     /**

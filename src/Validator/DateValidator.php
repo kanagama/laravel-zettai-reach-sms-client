@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Kanagama\ZettaiReachSmsClient\Validator;
 
 use Carbon\CarbonImmutable;
+use Exception;
 
 /**
  * 日付バリデータ
@@ -84,6 +85,26 @@ final class DateValidator
         $month = (int) substr($value, 4, 2);
 
         return checkdate($month, 1, $year);
+    }
+
+    /**
+    * 正しい日時かどうか判定
+    *
+    * @return bool
+    */
+    public static function isYmdHiValidDateTime(string $value): bool
+    {
+        if (!self::isYmdHiFormat($value)) {
+            return false;
+        }
+
+        try {
+            $dateTime = CarbonImmutable::createFromFormat('Y-m-d H:i', $value);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return $dateTime->format('Y-m-d H:i') === $value;
     }
 
     /**

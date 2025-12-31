@@ -17,6 +17,7 @@ final class Domain implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

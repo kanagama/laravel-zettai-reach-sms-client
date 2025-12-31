@@ -29,6 +29,7 @@ final class EndDate implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

@@ -13,7 +13,8 @@ final class ClientTagTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
-    #[Group('clientTag')]
+    #[Group('parameters')]
+    #[Group('ClientTag')]
     public function 空の場合は例外を投げる()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -23,7 +24,8 @@ final class ClientTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientTag')]
+    #[Group('parameters')]
+    #[Group('ClientTag')]
     public function 文字数が200を超える場合は例外を投げる()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -33,7 +35,8 @@ final class ClientTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientTag')]
+    #[Group('parameters')]
+    #[Group('ClientTag')]
     public function 文字数が1の場合はオブジェクト化出来る()
     {
         $clientTag = new ClientTag('a');
@@ -43,7 +46,8 @@ final class ClientTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientTag')]
+    #[Group('parameters')]
+    #[Group('ClientTag')]
     public function 文字数が200の場合はオブジェクト化出来る()
     {
         $value = str_repeat('a', 200);
@@ -54,7 +58,8 @@ final class ClientTagTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientTag')]
+    #[Group('parameters')]
+    #[Group('ClientTag')]
     public function 全角文字の場合は例外を投げる()
     {
         $this->expectException(InvalidArgumentException::class);

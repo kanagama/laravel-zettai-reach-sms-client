@@ -16,7 +16,7 @@ interface ZettaiReachSmsClientInterface
      * @param  string|null  $groupTag
      * @return void
      */
-    public function send(
+    public function sendMethod(
         string $phoneNumber,
         string $message,
         ?string $carrierId = null,

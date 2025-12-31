@@ -14,7 +14,8 @@ final class ClientIdTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
-    #[Group('clientId')]
+    #[Group('parameters')]
+    #[Group('ClientId')]
     public function クライアントIDを取得出来ない()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -26,7 +27,8 @@ final class ClientIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientId')]
+    #[Group('parameters')]
+    #[Group('ClientId')]
     public function クライアントIDが半角数字でない場合例外を投げる()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -38,7 +40,9 @@ final class ClientIdTest extends TestCase
 
     #[Test]
     #[Group('unit')]
-    #[Group('clientId')]
+    #[Group('parameters')]
+    #[Group('ClientId')]
+    #[Group('value')]
     public function クライアントIDを取得出来る()
     {
         Config::set('zettai-reach-sms.client_id', '123456');

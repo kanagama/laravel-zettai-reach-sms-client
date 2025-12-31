@@ -21,6 +21,7 @@ final class ClientTag implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

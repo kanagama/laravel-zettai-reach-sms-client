@@ -26,6 +26,7 @@ final class Date implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

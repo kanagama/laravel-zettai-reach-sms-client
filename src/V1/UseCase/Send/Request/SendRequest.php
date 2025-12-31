@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Kanagama\ZettaiReachSmsClient\V1\Dto;
+namespace Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Request;
 
 use Kanagama\ZettaiReachSmsClient\Parameters\CarrierId;
 use Kanagama\ZettaiReachSmsClient\Parameters\ClientId;
@@ -16,7 +16,7 @@ use Kanagama\ZettaiReachSmsClient\Parameters\Token;
 /**
  * CommonMT 送信
  */
-final class SendDto
+final class SendRequest implements SendRequestInterface
 {
     /**
      * @var Token
@@ -74,10 +74,10 @@ final class SendDto
     public function __construct(
         string $message,
         string $phoneNumber,
-        ?string $carrierId,
-        ?string $clientTag,
-        ?string $scheduleTime,
-        ?string $groupTag,
+        ?string $carrierId = null,
+        ?string $clientTag = null,
+        ?string $scheduleTime = null,
+        ?string $groupTag = null,
     ) {
         $this->token = new Token();
         $this->clientId = new ClientId();
@@ -104,6 +104,7 @@ final class SendDto
     }
 
     /**
+     * @test
      * @return array
      */
     public function toAll(): array
@@ -122,6 +123,7 @@ final class SendDto
     }
 
     /**
+     * @test
      * @return array
      */
     public function toArray(): array

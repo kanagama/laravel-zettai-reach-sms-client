@@ -33,6 +33,7 @@ final class Token implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

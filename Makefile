@@ -10,3 +10,6 @@ development-build:
 # 開発用のコンテナを起動する
 development:
 	docker-compose -f compose.yml up
+# 開発用コンテナに入る
+container:
+	docker exec -it php82_laravel_zettai_reach_sms_client /bin/bash

@@ -21,9 +21,15 @@ final class ScheduleTime implements ValueObjectInterface
         if (!DateValidator::isYmdHiFormat($this->value)) {
             throw new InvalidArgumentException('scheduleTimeはYYYY-mm-dd H:i形式である必要があります。');
         }
+
+        // 正しい日時かどうか判定する
+        if (!DateValidator::isYmdHiValidDateTime($this->value)) {
+            throw new InvalidArgumentException('ScheduleTimeは正しい日時である必要があります。');
+        }
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

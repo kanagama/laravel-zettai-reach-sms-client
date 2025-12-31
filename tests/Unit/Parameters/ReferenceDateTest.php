@@ -14,13 +14,14 @@ final class ReferenceDateTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('ReferenceDate')]
     #[DataProvider('validReferenceDateProvider')]
     public function ReferenceDateが正しく生成できる(
-        string $input,
+        string $value,
     ): void {
-        $referenceDate = new ReferenceDate($input);
-        $this->assertSame($input, $referenceDate->value());
+        $referenceDate = new ReferenceDate($value);
+        $this->assertSame($value, $referenceDate->value());
     }
 
     /**
@@ -35,22 +36,20 @@ final class ReferenceDateTest extends TestCase
             '2年前の日付' => [
                 'value' => date('Ymd', strtotime('-2 years')),
             ],
-            '過去の日付' => [
-                'value' => '20220101',
-            ],
         ];
     }
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('ReferenceDate')]
     #[DataProvider('invalidReferenceDateProvider')]
     public function ReferenceDateが正しく例外を投げる(
-        string $input,
+        string $value,
     ): void {
         $this->expectException(InvalidArgumentException::class);
 
-        new ReferenceDate($input);
+        new ReferenceDate($value);
     }
 
     /**

@@ -32,6 +32,7 @@ final class SmsCode implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string

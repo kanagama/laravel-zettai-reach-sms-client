@@ -13,6 +13,7 @@ final class EndDateTest extends TestCase
 {
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('EndDate')]
     public function 不正な形式の場合、例外が発生する(): void
     {
@@ -23,6 +24,7 @@ final class EndDateTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('EndDate')]
     public function 不正な日付の場合、例外が発生する(): void
     {
@@ -33,6 +35,7 @@ final class EndDateTest extends TestCase
 
     #[Test]
     #[Group('unit')]
+    #[Group('parameters')]
     #[Group('EndDate')]
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void

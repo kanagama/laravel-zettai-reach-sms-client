@@ -3,38 +3,67 @@ declare(strict_types=1);
 
 namespace Kanagama\ZettaiReachSmsClient\V1;
 
-use Kanagama\ZettaiReachSmsClient\V1\Dto\SendDto;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttp;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachHttpInterface;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponse;
-use Kanagama\ZettaiReachSmsClient\V1\Http\ZettaiReachResponseInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Request\SendRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomainInterface;
 
+/**
+ * @package Kanagama\ZettaiReachSmsClient\V1
+ *
+ * @method array send(string $phoneNumber, string $message, ?string $carrierId = null, ?string $clientTag = null, ?string $scheduleTime = null, ?string $groupTag = null) CommonMT 送信
+ * @method static array send(string $phoneNumber, string $message, ?string $carrierId = null, ?string $clientTag = null, ?string $scheduleTime = null, ?string $groupTag = null) CommonMT 送信
+ */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
     /**
      * CommonMT 送信
      *
-     * @param ZettaiReachHttp $http
-     * @param ZettaiReachResponse $response
+     * @param  SendDomain  $sendDomain
      */
     public function __construct(
-        private readonly ZettaiReachHttpInterface $http,
-        private readonly ZettaiReachResponseInterface $response,
+        private readonly SendDomainInterface $sendDomain,
     ) {
+    }
+
+    /**
+     * 静的呼び出しハンドラ
+     *
+     * @param  string  $name
+     * @param  array  $arguments
+     * @return array
+     */
+    public static function __callStatic(string $name, array $arguments): array
+    {
+        /** @var ZettaiReachSmsClient */
+        $instance = app()->make(ZettaiReachSmsClientInterface::class);
+
+        return $instance->{$name . 'Method'}(...$arguments);
+    }
+
+    /**
+     * 動的呼び出しハンドラ
+     *
+     * @param  string  $name
+     * @param  array  $arguments
+     * @return array
+     */
+    public function __call(string $name, array $arguments): array
+    {
+        return self::__callStatic($name, $arguments);
     }
 
     /**
      * CommonMT 送信
      *
-     * @param  string  $phoneNumbe
+     * @param  string  $phoneNumber
      * @param  string  $message
      * @param  string|null  $carrierId
      * @param  string|null  $clientTag
      * @param  string|null  $scheduleTime
      * @param  string|null  $groupTag
-     * @return void
+     * @return array
      */
-    public function send(
+    public function sendMethod(
         string $phoneNumber,
         string $message,
         ?string $carrierId = null,
@@ -42,7 +71,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         ?string $scheduleTime = null,
         ?string $groupTag = null,
     ): array {
-        $sendDto = new SendDto(
+        $sendRequest = new SendRequest(
             phoneNumber: $phoneNumber,
             message: $message,
             carrierId: $carrierId,
@@ -51,12 +80,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
             groupTag: $groupTag,
         );
 
-        $response = $this->http->postForm(
-            url: 'https://sms-api.aossms.com/p5/api/mt.json',
-            params: $sendDto->toArray(),
-        );
-
-        return $this->response->handle($response);
+        return $this->sendDomain->execute($sendRequest);
     }
 
     /**

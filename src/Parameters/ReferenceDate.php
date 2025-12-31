@@ -31,6 +31,7 @@ final class ReferenceDate implements ValueObjectInterface
     }
 
     /**
+     * @test
      * @return string
      */
     public function value(): string
