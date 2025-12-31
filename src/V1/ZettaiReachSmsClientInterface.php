@@ -8,7 +8,7 @@ interface ZettaiReachSmsClientInterface
     /**
      * CommonMT 送信
      *
-     * @param  string  $phoneNumbe
+     * @param  string  $phoneNumber
      * @param  string  $message
      * @param  string|null  $carrierId
      * @param  string|null  $clientTag
