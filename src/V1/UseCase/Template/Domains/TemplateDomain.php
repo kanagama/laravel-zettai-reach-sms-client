@@ -23,7 +23,7 @@ final class TemplateDomain implements TemplateDomainInterface
     }
 
     /**
-     * @param  TemplateRequest  $request
+     * @param  TemplateRequestInterface  $request
      * @return array
      */
     public function execute(TemplateRequestInterface $request): array
