@@ -13,3 +13,9 @@ development:
 # 開発用コンテナに入る
 container:
 	docker exec -it php82_laravel_zettai_reach_sms_client /bin/bash
+# git fetch
+fetch:
+	GIT_SSH_COMMAND="ssh -i ~/.ssh/kanagama" git fetch origin
+# git push {指定ブランチ}
+push:
+	GIT_SSH_COMMAND="ssh -i ~/.ssh/kanagama" git push origin ${branch}
