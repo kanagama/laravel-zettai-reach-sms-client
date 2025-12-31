@@ -30,6 +30,30 @@ final class ZettaiReachSmsClientServiceProvider extends ServiceProvider
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomainInterface::class,
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomain::class,
         );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomain::class,
+        );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomain::class,
+        );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomain::class,
+        );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain::class,
+        );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomain::class,
+        );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomain::class,
+        );
 
         //
         // Http
