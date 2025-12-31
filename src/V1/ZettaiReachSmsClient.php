@@ -15,6 +15,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelRes
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Request\CancelReservationAllRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Request\StatusRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -27,6 +30,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\Cancel
  * @method static array cancelReservation(?string $clientTag = null, ?string $scheduleTime = null, ?string $scheduleDate = null, ?string $groupTag = null) CommonMT 予約送信キャンセル
  * @method array cancelReservationAll(string $scheduleDate) CommonMT 予約送信一括キャンセル
  * @method static array cancelReservationAll(string $scheduleDate) CommonMT 予約送信一括キャンセル
+ * @method array status(string $clientTag) CommonMT ステータス取得
+ * @method static array status(string $clientTag) CommonMT ステータス取得
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -35,17 +40,20 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT 予約送信確認
      * CommonMT 予約送信キャンセル
      * CommonMT 予約送信一括キャンセル
+     * CommonMT ステータス取得
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
      * @param  CancelReservationDomain  $cancelReservationDomain
      * @param  CancelReservationAllDomain  $cancelReservationAllDomain
+     * @param  StatusDomain  $statusDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
         private readonly CheckReservationDomainInterface $checkReservationDomain,
         private readonly CancelReservationDomainInterface $cancelReservationDomain,
         private readonly CancelReservationAllDomainInterface $cancelReservationAllDomain,
+        private readonly StatusDomainInterface $statusDomain,
     ) {
     }
 
@@ -171,5 +179,21 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         );
 
         return $this->cancelReservationAllDomain->execute($cancelReservationAllRequest);
+    }
+
+    /**
+     * CommonMT ステータス取得
+     *
+     * @param  string  $clientTag
+     * @return array
+     */
+    public function statusMethod(
+        string $clientTag,
+    ): array {
+        $statusRequest = new StatusRequest(
+            clientTag: $clientTag,
+        );
+
+        return $this->statusDomain->execute($statusRequest);
     }
 }
