@@ -1,6 +1,6 @@
 # laravel-zettai-reach-sms-client
 
-絶対リーチSMS API の Laravel クライアントライブラリです。
+[絶対リーチSMS API](https://doc.aossms.com/zettai-reach/openapi.html) の Laravel クライアントライブラリです。
 
 Laravel client library for Zettai Reach SMS API.
 
@@ -129,7 +129,7 @@ public function sendSms(): void
         phoneNumber: '09012345678',
         message: 'これはテストメッセージです。',
     );
-    
+
     // オプションパラメータを指定した送信 / Send with optional parameters
     $response = $this->smsClient->send(
         phoneNumber: '09012345678',
@@ -202,7 +202,7 @@ public function checkReservation(): void
     $response = $this->smsClient->checkReservation(
         clientTag: 'unique-tag-001',
     );
-    
+
     // scheduleDate と groupTag の組み合わせで確認 / Check by scheduleDate and groupTag combination
     $response = $this->smsClient->checkReservation(
         scheduleDate: '20251231',
@@ -279,7 +279,7 @@ public function cancelReservation(): void
     $response = $this->smsClient->cancelReservation(
         clientTag: 'unique-tag-001',
     );
-    
+
     // groupTag でまとめてキャンセル / Cancel by groupTag
     $response = $this->smsClient->cancelReservation(
         scheduleDate: '20251231',
@@ -432,7 +432,7 @@ public function createShortUrl(): void
     $response = $this->smsClient->shortenUrl(
         longUrl: 'https://example.com/very/long/url/path/to/page',
     );
-    
+
     // カスタムドメインで変換 / Convert with custom domain
     $response = $this->smsClient->shortenUrl(
         longUrl: 'https://example.com/very/long/url/path/to/page',

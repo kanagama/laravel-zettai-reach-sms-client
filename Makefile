@@ -19,3 +19,6 @@ fetch:
 # git push {指定ブランチ}
 push:
 	GIT_SSH_COMMAND="ssh -i ~/.ssh/kanagama" git push origin ${branch}
+# git push tags
+push-tag:
+	GIT_SSH_COMMAND="ssh -i ~/.ssh/kanagama" git push --tags
