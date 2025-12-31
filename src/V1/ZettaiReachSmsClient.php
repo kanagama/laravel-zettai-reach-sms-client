@@ -82,22 +82,4 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 
         return $this->sendDomain->execute($sendRequest);
     }
-
-    /**
-     * CommonMT 予約送信確認
-     *
-     * @param  string|null  $clientTag
-     * @param  string|null  $scheduleTime
-     * @param  string|null  $scheduleDate
-     * @param  string|null  $groupTag
-     * @return array
-     */
-    public function checkReservation(
-        ?string $clientTag = null,
-        ?string $scheduleTime = null,
-        ?string $scheduleDate = null,
-        ?string $groupTag = null,
-    ): array {
-        return [];
-    }
 }
