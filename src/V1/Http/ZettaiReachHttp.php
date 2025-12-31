@@ -20,6 +20,7 @@ final class ZettaiReachHttp implements ZettaiReachHttpInterface
     public function __construct(
         HttpFactory $httpFactory,
     ) {
+        /** @phpstan-ignore-next-line */
         $this->http = $httpFactory->asForm()
             ->timeout(config('zettai-reach-sms-client.timeout', 10));
     }
