@@ -85,6 +85,7 @@ final class CheckReservationRequest implements CheckReservationRequestInterface
     }
 
     /**
+     * @test
      * @return array
      */
     public function toAll(): array
@@ -101,6 +102,7 @@ final class CheckReservationRequest implements CheckReservationRequestInterface
     }
 
     /**
+     * @test
      * @return array
      */
     public function toArray(): array
