@@ -54,6 +54,10 @@ final class ZettaiReachSmsClientServiceProvider extends ServiceProvider
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomainInterface::class,
             \Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomain::class,
         );
+        $this->app->bind(
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomainInterface::class,
+            \Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomain::class,
+        );
 
         //
         // Http

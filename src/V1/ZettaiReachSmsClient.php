@@ -27,6 +27,9 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInte
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Request\NumberCleaningRequest;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomainInterface;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Request\SeparatedSuccessCountRequest;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomain;
+use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomainInterface;
 
 /**
  * @package Kanagama\ZettaiReachSmsClient\V1
@@ -47,6 +50,8 @@ use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleani
  * @method static array template() CommonMT 登録済み定型文取得
  * @method array numberCleaning(string $phoneNumber) CommonMT 電話番号クリーニング
  * @method static array numberCleaning(string $phoneNumber) CommonMT 電話番号クリーニング
+ * @method array separatedSuccessCount(string $startDate, string $endDate) CommonMT 通数集計
+ * @method static array separatedSuccessCount(string $startDate, string $endDate) CommonMT 通数集計
  */
 final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
 {
@@ -59,6 +64,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * ショート URL 登録
      * CommonMT 登録済み定型文取得
      * CommonMT 電話番号クリーニング
+     * CommonMT 通数集計
      *
      * @param  SendDomain  $sendDomain
      * @param  CheckReservationDomain  $checkReservationDomain
@@ -68,6 +74,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * @param  ShortenUrlDomain  $shortenUrlDomain
      * @param  TemplateDomain  $templateDomain
      * @param  NumberCleaningDomain  $numberCleaningDomain
+     * @param  SeparatedSuccessCountDomain  $separatedSuccessCountDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,
@@ -78,6 +85,7 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         private readonly ShortenUrlDomainInterface $shortenUrlDomain,
         private readonly TemplateDomainInterface $templateDomain,
         private readonly NumberCleaningDomainInterface $numberCleaningDomain,
+        private readonly SeparatedSuccessCountDomainInterface $separatedSuccessCountDomain,
     ) {
     }
 
@@ -266,5 +274,24 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
         );
 
         return $this->numberCleaningDomain->execute($numberCleaningRequest);
+    }
+
+    /**
+     * CommonMT 通数集計
+     *
+     * @param  string  $startDate
+     * @param  string  $endDate
+     * @return array
+     */
+    public function separatedSuccessCountMethod(
+        string $startDate,
+        string $endDate,
+    ): array {
+        $separatedSuccessCountRequest = new SeparatedSuccessCountRequest(
+            startDate: $startDate,
+            endDate: $endDate,
+        );
+
+        return $this->separatedSuccessCountDomain->execute($separatedSuccessCountRequest);
     }
 }
