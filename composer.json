@@ -1,6 +1,5 @@
 {
     "name": "kanagama/laravel-zettai-reach-sms-client",
-    "version": "1.0.0",
     "description": "絶対リーチSMS API for Laravel",
     "keywords": [
         "laravel",
