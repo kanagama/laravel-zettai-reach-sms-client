@@ -56,6 +56,7 @@ ZETTAI_REACH_SMS_TOKEN=your-api-token-here
 ZETTAI_REACH_SMS_CLIENT_ID=your-client-id-here
 ZETTAI_REACH_SMS_TIMEOUT_SECONDS=10
 ZETTAI_REACH_SMS_CODE=xxxxx
+ZETTAI_REACH_SMS_DRIVER="fake"
 ```
 
 - `ZETTAI_REACH_SMS_TOKEN`: アカウント登録時に発行されるアクセスキー（32文字の半角英数字）/ Access key issued during account registration (32 alphanumeric characters)
