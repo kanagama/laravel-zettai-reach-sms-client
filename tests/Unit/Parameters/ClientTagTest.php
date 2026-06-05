@@ -15,31 +15,31 @@ final class ClientTagTest extends TestCase
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientTag')]
-    public function 空の場合は例外を投げる()
+    public function 空の場合は例外を投げる(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ClientTag('');
+        ClientTag::create('');
     }
 
     #[Test]
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientTag')]
-    public function 文字数が200を超える場合は例外を投げる()
+    public function 文字数が200を超える場合は例外を投げる(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ClientTag(str_repeat('a', 201));
+        ClientTag::create(str_repeat('a', 201));
     }
 
     #[Test]
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientTag')]
-    public function 文字数が1の場合はオブジェクト化出来る()
+    public function 文字数が1の場合はオブジェクト化出来る(): void
     {
-        $clientTag = new ClientTag('a');
+        $clientTag = ClientTag::create('a');
 
         $this->assertSame('a', $clientTag->value());
     }
@@ -48,10 +48,10 @@ final class ClientTagTest extends TestCase
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientTag')]
-    public function 文字数が200の場合はオブジェクト化出来る()
+    public function 文字数が200の場合はオブジェクト化出来る(): void
     {
         $value = str_repeat('a', 200);
-        $clientTag = new ClientTag($value);
+        $clientTag = ClientTag::create($value);
 
         $this->assertSame($value, $clientTag->value());
     }
@@ -60,10 +60,10 @@ final class ClientTagTest extends TestCase
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientTag')]
-    public function 全角文字の場合は例外を投げる()
+    public function 全角文字の場合は例外を投げる(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ClientTag('あ');
+        ClientTag::create('あ');
     }
 }

@@ -18,7 +18,7 @@ final class ClientId implements ValueObjectInterface
     /**
      *
      */
-    public function __construct()
+    private function __construct()
     {
         if (empty(config('zettai-reach-sms.client_id'))) {
             throw new InvalidArgumentException('clientIdの設定が見つかりません。');
@@ -38,5 +38,13 @@ final class ClientId implements ValueObjectInterface
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @return self
+     */
+    public static function create(): self
+    {
+        return new self();
     }
 }

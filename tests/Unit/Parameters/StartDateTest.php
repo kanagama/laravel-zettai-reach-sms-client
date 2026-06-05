@@ -19,7 +19,7 @@ final class StartDateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new StartDate('2024-01-01');
+        StartDate::create('2024-01-01');
     }
 
     #[Test]
@@ -30,7 +30,7 @@ final class StartDateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new StartDate('20240230');
+        StartDate::create('20240230');
     }
 
     #[Test]
@@ -40,7 +40,7 @@ final class StartDateTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $startDate = new StartDate('20240101');
+        $startDate = StartDate::create('20240101');
 
         $this->assertSame('20240101', $startDate->value());
     }

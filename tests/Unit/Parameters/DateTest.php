@@ -19,7 +19,7 @@ final class DateTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        new Date('20240101');
+        Date::create('20240101');
     }
 
     #[Test]
@@ -30,7 +30,7 @@ final class DateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Date('2024-01-01');
+        Date::create('2024-01-01');
     }
 
     #[Test]
@@ -41,7 +41,7 @@ final class DateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Date('20240230');
+        Date::create('20240230');
     }
 
     #[Test]
@@ -51,7 +51,7 @@ final class DateTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $date = new Date('20240101');
+        $date = Date::create('20240101');
 
         $this->assertSame('20240101', $date->value());
     }

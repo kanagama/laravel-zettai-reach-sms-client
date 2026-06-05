@@ -39,11 +39,11 @@ final class CancelReservationAllRequest implements CancelReservationAllRequestIn
     public function __construct(
         string $scheduleDate,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
-        $this->smsCode = new SmsCode();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
+        $this->smsCode = SmsCode::create();
 
-        $this->scheduleDate = new ScheduleDate($scheduleDate);
+        $this->scheduleDate = ScheduleDate::create($scheduleDate);
     }
 
     /**

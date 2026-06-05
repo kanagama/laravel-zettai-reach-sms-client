@@ -16,46 +16,52 @@ final class ZettaiReachHttpTest extends TestCase
     #[Test]
     #[Group('unit')]
     #[Group('http')]
-    public function コンストラクタがasFormとtimeoutを呼ぶ()
+    public function コンストラクタがasFormとtimeoutを呼ぶ(): void
     {
-        $factory = $this->createMock(HttpFactory::class);
-        $pending = $this->getMockBuilder(PendingRequest::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $factory->expects($this->once())
+        $pendingRequest = $this->createMock(PendingRequest::class);
+        $pendingRequest->expects($this->once())
             ->method('asForm')
-            ->willReturn($pending);
-
-        $pending->expects($this->once())
+            ->willReturnSelf();
+        $pendingRequest->expects($this->once())
             ->method('timeout')
             ->with(10)
-            ->willReturn($pending);
+            ->willReturnSelf();
 
-        new ZettaiReachHttp($factory);
+        $httpFactory = $this->createMock(HttpFactory::class);
+        $httpFactory->expects($this->once())
+            ->method('createPendingRequest')
+            ->willReturn($pendingRequest);
+
+        new ZettaiReachHttp($httpFactory);
     }
 
     #[Test]
     #[Group('unit')]
     #[Group('http')]
-    public function postFormがpendingRequestに委譲して値を返す()
+    public function postFormがpendingRequestに委譲して値を返す(): void
     {
-        $factory = $this->createMock(HttpFactory::class);
-        $pending = $this->getMockBuilder(PendingRequest::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $pendingRequest = $this->createMock(PendingRequest::class);
+        $pendingRequest->expects($this->once())
+            ->method('asForm')
+            ->willReturnSelf();
+        $pendingRequest->expects($this->once())
+            ->method('timeout')
+            ->with(10)
+            ->willReturnSelf();
 
-        $factory->method('asForm')->willReturn($pending);
-        $pending->method('timeout')->willReturn($pending);
+        $httpFactory = $this->createMock(HttpFactory::class);
+        $httpFactory->expects($this->once())
+            ->method('createPendingRequest')
+            ->willReturn($pendingRequest);
 
         $expected = $this->createMock(Response::class);
 
-        $pending->expects($this->once())
+        $pendingRequest->expects($this->once())
             ->method('post')
             ->with('https://example.test/api', ['foo' => 'bar'])
             ->willReturn($expected);
 
-        $client = new ZettaiReachHttp($factory);
+        $client = new ZettaiReachHttp($httpFactory);
 
         $this->assertSame($expected, $client->postForm('https://example.test/api', ['foo' => 'bar']));
     }
@@ -63,24 +69,30 @@ final class ZettaiReachHttpTest extends TestCase
     #[Test]
     #[Group('unit')]
     #[Group('http')]
-    public function getが_endingRequestに委譲して値を返す()
+    public function getがpendingRequestに委譲して値を返す(): void
     {
-        $factory = $this->createMock(HttpFactory::class);
-        $pending = $this->getMockBuilder(PendingRequest::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $pendingRequest = $this->createMock(PendingRequest::class);
+        $pendingRequest->expects($this->once())
+            ->method('asForm')
+            ->willReturnSelf();
+        $pendingRequest->expects($this->once())
+            ->method('timeout')
+            ->with(10)
+            ->willReturnSelf();
 
-        $factory->method('asForm')->willReturn($pending);
-        $pending->method('timeout')->willReturn($pending);
+        $httpFactory = $this->createMock(HttpFactory::class);
+        $httpFactory->expects($this->once())
+            ->method('createPendingRequest')
+            ->willReturn($pendingRequest);
 
         $expected = $this->createMock(Response::class);
 
-        $pending->expects($this->once())
+        $pendingRequest->expects($this->once())
             ->method('get')
             ->with('https://example.test/status', ['q' => 'v'])
             ->willReturn($expected);
 
-        $client = new ZettaiReachHttp($factory);
+        $client = new ZettaiReachHttp($httpFactory);
 
         $this->assertSame($expected, $client->get('https://example.test/status', ['q' => 'v']));
     }

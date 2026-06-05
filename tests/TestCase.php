@@ -30,6 +30,7 @@ class TestCase extends BaseTestCase
             $config->set('zettai-reach-sms.sms_code', '123456');
             $config->set('zettai-reach-sms.client_id', '000001');
             $config->set('zettai-reach-sms.timeout_seconds', 10);
+            $config->set('zettai-reach-sms.sms_driver', 'fake');
         });
 
         // $app['config']->set('zettai-reach-sms.token', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');

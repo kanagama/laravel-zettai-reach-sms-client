@@ -11,7 +11,7 @@ final class ClientTag implements ValueObjectInterface
     /**
      * @param string $value
      */
-    public function __construct(
+    private function __construct(
         private readonly string $value
     ) {
         // 1文字から200文字の半角英数字、記号
@@ -27,5 +27,14 @@ final class ClientTag implements ValueObjectInterface
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @param  string  $value
+     * @return self
+     */
+    public static function create(string $value): self
+    {
+        return new self($value);
     }
 }

@@ -20,7 +20,7 @@ final class MessageTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $longMessage = str_repeat('あ', 661);
-        new Message($longMessage);
+        Message::create($longMessage);
     }
 
     #[Test]
@@ -31,7 +31,7 @@ final class MessageTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Message('');
+        Message::create('');
     }
 
     #[Test]
@@ -41,7 +41,7 @@ final class MessageTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $message = new Message('テストメッセージ');
+        $message = Message::create('テストメッセージ');
 
         $this->assertSame('テストメッセージ', $message->value());
     }

@@ -16,26 +16,26 @@ final class ClientIdTest extends TestCase
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientId')]
-    public function クライアントIDを取得出来ない()
+    public function クライアントIDを取得出来ない(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         Config::set('zettai-reach-sms.client_id', null);
 
-        new ClientId();
+        ClientId::create();
     }
 
     #[Test]
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('ClientId')]
-    public function クライアントIDが半角数字でない場合例外を投げる()
+    public function クライアントIDが半角数字でない場合例外を投げる(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         Config::set('zettai-reach-sms.client_id', 'abc123');
 
-        new ClientId();
+        ClientId::create();
     }
 
     #[Test]
@@ -43,11 +43,11 @@ final class ClientIdTest extends TestCase
     #[Group('parameters')]
     #[Group('ClientId')]
     #[Group('value')]
-    public function クライアントIDを取得出来る()
+    public function クライアントIDを取得出来る(): void
     {
         Config::set('zettai-reach-sms.client_id', '123456');
 
-        $clientId = new ClientId();
+        $clientId = ClientId::create();
 
         $this->assertSame('123456', $clientId->value());
     }

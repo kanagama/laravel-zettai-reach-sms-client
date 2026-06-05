@@ -29,9 +29,9 @@ final class TemplateRequest implements TemplateRequestInterface
 
     public function __construct()
     {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
-        $this->smsCode = new SmsCode();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
+        $this->smsCode = SmsCode::create();
     }
 
     /**

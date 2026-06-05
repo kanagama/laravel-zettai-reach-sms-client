@@ -79,27 +79,27 @@ final class SendRequest implements SendRequestInterface
         ?string $scheduleTime = null,
         ?string $groupTag = null,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
-        $this->smsCode = new SmsCode();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
+        $this->smsCode = SmsCode::create();
 
-        $this->message = new Message($message);
-        $this->phoneNumber = new PhoneNumber($phoneNumber);
+        $this->message = Message::create($message);
+        $this->phoneNumber = PhoneNumber::create($phoneNumber);
 
         $this->carrierId = ($carrierId)
-            ? new CarrierId($carrierId)
+            ? CarrierId::create($carrierId)
             : null;
 
         $this->clientTag = ($clientTag)
-            ? new ClientTag($clientTag)
+            ? ClientTag::create($clientTag)
             : null;
 
         $this->scheduleTime = ($scheduleTime)
-            ? new ScheduleTime($scheduleTime)
+            ? ScheduleTime::create($scheduleTime)
             : null;
 
         $this->groupTag = ($groupTag)
-            ? new GroupTag($groupTag)
+            ? GroupTag::create($groupTag)
             : null;
     }
 

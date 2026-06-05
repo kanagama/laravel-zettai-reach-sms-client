@@ -20,8 +20,8 @@ final class CarrierIdTest extends TestCase
     #[DataProvider('objectProvider')]
     public function オブジェクト化出来る(
         string $value,
-    ) {
-        $objectCarrierId = new CarrierId($value);
+    ): void {
+        $objectCarrierId = CarrierId::create($value);
 
         $this->assertSame($value, $objectCarrierId->value());
     }
@@ -52,7 +52,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('getAu')]
-    public function auの値を取得できる()
+    public function auの値を取得できる(): void
     {
         $this->assertSame('101', CarrierId::getAu());
     }
@@ -62,7 +62,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('getDocomo')]
-    public function docomoの値を取得できる()
+    public function docomoの値を取得できる(): void
     {
         $this->assertSame('103', CarrierId::getDocomo());
     }
@@ -72,7 +72,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('getSoftbank')]
-    public function softbankの値を取得できる()
+    public function softbankの値を取得できる(): void
     {
         $this->assertSame('105', CarrierId::getSoftbank());
     }
@@ -82,7 +82,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('getRakuten')]
-    public function 楽天の値を取得できる()
+    public function 楽天の値を取得できる(): void
     {
         $this->assertSame('106', CarrierId::getRakuten());
     }
@@ -92,7 +92,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('toArray')]
-    public function 配列の要素数と定数の数が一致する()
+    public function 配列の要素数と定数の数が一致する(): void
     {
         // 定数の数を取得する
         $reflection = new ReflectionClass(CarrierId::class);
@@ -108,7 +108,7 @@ final class CarrierIdTest extends TestCase
     #[Group('parameters')]
     #[Group('CarrierId')]
     #[Group('toArray')]
-    public function toArrayの内容が正しい()
+    public function toArrayの内容が正しい(): void
     {
         $this->assertSame([
             CarrierId::getAu()       => 'au',

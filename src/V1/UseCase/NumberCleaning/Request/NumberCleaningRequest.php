@@ -33,10 +33,10 @@ final class NumberCleaningRequest implements NumberCleaningRequestInterface
     public function __construct(
         string $phoneNumber,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
 
-        $this->phoneNumber = new PhoneNumber($phoneNumber);
+        $this->phoneNumber = PhoneNumber::create($phoneNumber);
     }
 
     /**

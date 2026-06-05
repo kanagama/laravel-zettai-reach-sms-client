@@ -14,7 +14,7 @@ final class EndDate implements ValueObjectInterface
     /**
      * @param string $value
      */
-    public function __construct(
+    private function __construct(
         private readonly string $value,
     ) {
         // yyyyMMdd 形式である
@@ -35,5 +35,14 @@ final class EndDate implements ValueObjectInterface
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @param  string  $value
+     * @return self
+     */
+    public static function create(string $value): self
+    {
+        return new self($value);
     }
 }

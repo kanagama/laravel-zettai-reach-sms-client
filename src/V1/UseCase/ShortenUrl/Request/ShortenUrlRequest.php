@@ -41,13 +41,13 @@ final class ShortenUrlRequest implements ShortenUrlRequestInterface
         string $longUrl,
         ?string $domain = null,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
 
-        $this->longUrl = new LongUrl($longUrl);
+        $this->longUrl = LongUrl::create($longUrl);
 
         $this->domain = ($domain)
-            ? new Domain($domain)
+            ? Domain::create($domain)
             : null;
     }
 

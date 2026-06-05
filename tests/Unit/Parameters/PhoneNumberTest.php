@@ -20,7 +20,7 @@ final class PhoneNumberTest extends TestCase
     public function 正しい電話番号が設定できる(
         string $value,
     ): void {
-        $phoneNumber = new PhoneNumber($value);
+        $phoneNumber = PhoneNumber::create($value);
 
         $this->assertSame($value, $phoneNumber->value());
     }
@@ -56,7 +56,7 @@ final class PhoneNumberTest extends TestCase
     ): void {
         $this->expectException(InvalidArgumentException::class);
 
-        new PhoneNumber($value);
+        PhoneNumber::create($value);
     }
 
     /**

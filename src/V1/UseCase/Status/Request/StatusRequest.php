@@ -39,11 +39,11 @@ final class StatusRequest implements StatusRequestInterface
     public function __construct(
         string $clientTag,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
-        $this->smsCode = new SmsCode();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
+        $this->smsCode = SmsCode::create();
 
-        $this->clientTag = new ClientTag($clientTag);
+        $this->clientTag = ClientTag::create($clientTag);
     }
 
     /**

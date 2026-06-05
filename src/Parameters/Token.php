@@ -18,7 +18,7 @@ final class Token implements ValueObjectInterface
     /**
      *
      */
-    public function __construct()
+    private function __construct()
     {
         if (empty(config('zettai-reach-sms.token'))) {
             throw new InvalidArgumentException('tokenの設定が見つかりません。');
@@ -39,5 +39,13 @@ final class Token implements ValueObjectInterface
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @return self
+     */
+    public static function create(): self
+    {
+        return new self();
     }
 }

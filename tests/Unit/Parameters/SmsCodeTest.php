@@ -22,7 +22,7 @@ final class SmsCodeTest extends TestCase
     {
         Config::set('zettai-reach-sms.sms_code', '12345');
 
-        $smsCode = new SmsCode();
+        $smsCode = SmsCode::create();
         $this->assertSame('12345', $smsCode->value());
     }
 
@@ -36,7 +36,7 @@ final class SmsCodeTest extends TestCase
 
         Config::set('zettai-reach-sms.sms_code', null);
 
-        new SmsCode();
+        SmsCode::create();
     }
 
     #[Test]
@@ -50,7 +50,7 @@ final class SmsCodeTest extends TestCase
 
         Config::set('zettai-reach-sms.sms_code', $value);
 
-        new SmsCode();
+        SmsCode::create();
     }
 
     /**

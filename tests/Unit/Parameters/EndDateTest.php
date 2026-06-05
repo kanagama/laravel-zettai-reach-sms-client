@@ -19,7 +19,7 @@ final class EndDateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new EndDate('2024-01-01');
+        EndDate::create('2024-01-01');
     }
 
     #[Test]
@@ -30,7 +30,7 @@ final class EndDateTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new EndDate('20240230');
+        EndDate::create('20240230');
     }
 
     #[Test]
@@ -40,7 +40,7 @@ final class EndDateTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $endDate = new EndDate('20240101');
+        $endDate = EndDate::create('20240101');
 
         $this->assertSame('20240101', $endDate->value());
     }

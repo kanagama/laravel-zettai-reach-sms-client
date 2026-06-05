@@ -47,12 +47,12 @@ final class SeparatedSuccessCountRequest implements SeparatedSuccessCountRequest
         string $startDate,
         string $endDate,
     ) {
-        $this->token = new Token();
-        $this->clientId = new ClientId();
-        $this->smsCode = new SmsCode();
+        $this->token = Token::create();
+        $this->clientId = ClientId::create();
+        $this->smsCode = SmsCode::create();
 
-        $this->startDate = new StartDate($startDate);
-        $this->endDate = new EndDate($endDate);
+        $this->startDate = StartDate::create($startDate);
+        $this->endDate = EndDate::create($endDate);
     }
 
     /**

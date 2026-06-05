@@ -19,7 +19,7 @@ final class ScheduleTimeTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ScheduleTime('2024/01/01 12:00');
+        ScheduleTime::create('2024/01/01 12:00');
     }
 
     #[Test]
@@ -30,7 +30,7 @@ final class ScheduleTimeTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new ScheduleTime('2024-02-30 12:00');
+        ScheduleTime::create('2024-02-30 12:00');
     }
 
     #[Test]
@@ -40,7 +40,7 @@ final class ScheduleTimeTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $scheduleTime = new ScheduleTime('2024-01-01 12:00');
+        $scheduleTime = ScheduleTime::create('2024-01-01 12:00');
 
         $this->assertSame('2024-01-01 12:00', $scheduleTime->value());
     }

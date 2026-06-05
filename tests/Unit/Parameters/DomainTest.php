@@ -17,7 +17,7 @@ final class DomainTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $domain = new Domain('example.com');
+        $domain = Domain::create('example.com');
 
         $this->assertSame('example.com', $domain->value());
     }

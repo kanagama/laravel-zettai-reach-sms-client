@@ -20,7 +20,7 @@ final class LongUrlTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $longUrl = 'https://example.com/' . str_repeat('a', 2040);
-        new LongUrl($longUrl);
+        LongUrl::create($longUrl);
     }
 
     #[Test]
@@ -31,7 +31,7 @@ final class LongUrlTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new LongUrl('');
+        LongUrl::create('');
     }
 
     #[Test]
@@ -41,7 +41,7 @@ final class LongUrlTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $longUrl = new LongUrl('https://example.com/test');
+        $longUrl = LongUrl::create('https://example.com/test');
 
         $this->assertSame('https://example.com/test', $longUrl->value());
     }

@@ -22,11 +22,10 @@ final class ZettaiReachHttp implements ZettaiReachHttpInterface
         HttpFactory $httpFactory,
     ) {
         // PHP Intelephense の型推論が正しく働かないため、変数に代入してから型宣言する
-        /** @var PendingRequest $http */
-        $http = $httpFactory->asForm()
+        $this->http = $httpFactory
+            ->createPendingRequest()
+            ->asForm()
             ->timeout(config('zettai-reach-sms-client.timeout', 10));
-
-        $this->http = $http;
     }
 
     /**

@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   php82_laravel_zettai_reach_sms_client:
     container_name: php82_laravel_zettai_reach_sms_client
@@ -36,3 +35,16 @@ services:
     command: ./.docker/command/test.sh
     depends_on:
       - php83_laravel_zettai_reach_sms_client
+
+  php85_laravel_zettai_reach_sms_client:
+    container_name: php85_laravel_zettai_reach_sms_client
+    build:
+      context: .
+      dockerfile: ./.docker/dockerfile/PHP85_Dockerfile
+    volumes:
+      - .:/var/www/html
+    init: true
+    # restart: unless-stopped
+    command: ./.docker/command/test.sh
+    depends_on:
+      - php84_laravel_zettai_reach_sms_client

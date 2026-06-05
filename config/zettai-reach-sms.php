@@ -5,4 +5,6 @@ return [
     'token'           => env('ZETTAI_REACH_SMS_TOKEN', ''),
     'client_id'       => env('ZETTAI_REACH_SMS_CLIENT_ID', ''),
     'timeout_seconds' => (int) env('ZETTAI_REACH_SMS_TIMEOUT_SECONDS', 10),
+    'sms_code'        => env('ZETTAI_REACH_SMS_CODE', ''),
+    'sms_driver'      => env('ZETTAI_REACH_SMS_DRIVER', 'fake'),
 ];

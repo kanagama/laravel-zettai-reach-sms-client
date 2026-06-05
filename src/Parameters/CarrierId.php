@@ -41,7 +41,7 @@ final class CarrierId implements ValueObjectInterface
     /**
      * @param string $value
      */
-    public function __construct(
+    private function __construct(
         private readonly string $value
     ) {
         if (!in_array((int) $this->value, array_keys(self::toArray()), true)) {
@@ -114,5 +114,14 @@ final class CarrierId implements ValueObjectInterface
             self::getSoftbank() => 'ソフトバンク',
             self::getRakuten()  => '楽天',
         ];
+    }
+
+    /**
+     * @param  string  $value
+     * @return self
+     */
+    public static function create(string $value): self
+    {
+        return new self($value);
     }
 }

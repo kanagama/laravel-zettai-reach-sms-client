@@ -19,7 +19,7 @@ final class GroupTagTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
 
-        new GroupTag('ValidTag123!@#');
+        GroupTag::create('ValidTag123!@#');
     }
 
     #[Test]
@@ -31,7 +31,7 @@ final class GroupTagTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new GroupTag("InvalidTag\n");
+        GroupTag::create("InvalidTag\n");
     }
 
     #[Test]
@@ -41,7 +41,7 @@ final class GroupTagTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $groupTag = new GroupTag('TestTag');
+        $groupTag = GroupTag::create('TestTag');
 
         $this->assertSame('TestTag', $groupTag->value());
     }
@@ -55,7 +55,7 @@ final class GroupTagTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $longTag = str_repeat('a', 201);
-        new GroupTag($longTag);
+        GroupTag::create($longTag);
     }
 
     #[Test]
@@ -66,6 +66,6 @@ final class GroupTagTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new GroupTag('');
+        GroupTag::create('');
     }
 }

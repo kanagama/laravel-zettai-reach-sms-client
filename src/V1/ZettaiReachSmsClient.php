@@ -4,31 +4,22 @@ declare(strict_types=1);
 namespace Kanagama\ZettaiReachSmsClient\V1;
 
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Request\SendRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Send\Domains\SendDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Request\CheckReservationRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CheckReservation\Domains\CheckReservationDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Request\CancelReservationRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservation\Domains\CancelReservationDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Request\CancelReservationAllRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\CancelReservationAll\Domains\CancelReservationAllDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Request\StatusRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Status\Domains\StatusDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Request\ShortenUrlRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\ShortenUrl\Domains\ShortenUrlDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Request\TemplateRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\Template\Domains\TemplateDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Request\NumberCleaningRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\NumberCleaning\Domains\NumberCleaningDomainInterface;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Request\SeparatedSuccessCountRequest;
-use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomain;
 use Kanagama\ZettaiReachSmsClient\V1\UseCase\SeparatedSuccessCount\Domains\SeparatedSuccessCountDomainInterface;
 
 /**
@@ -66,15 +57,15 @@ final class ZettaiReachSmsClient implements ZettaiReachSmsClientInterface
      * CommonMT 電話番号クリーニング
      * CommonMT 通数集計
      *
-     * @param  SendDomain  $sendDomain
-     * @param  CheckReservationDomain  $checkReservationDomain
-     * @param  CancelReservationDomain  $cancelReservationDomain
-     * @param  CancelReservationAllDomain  $cancelReservationAllDomain
-     * @param  StatusDomain  $statusDomain
-     * @param  ShortenUrlDomain  $shortenUrlDomain
-     * @param  TemplateDomain  $templateDomain
-     * @param  NumberCleaningDomain  $numberCleaningDomain
-     * @param  SeparatedSuccessCountDomain  $separatedSuccessCountDomain
+     * @param  SendDomainInterface  $sendDomain
+     * @param  CheckReservationDomainInterface  $checkReservationDomain
+     * @param  CancelReservationDomainInterface  $cancelReservationDomain
+     * @param  CancelReservationAllDomainInterface  $cancelReservationAllDomain
+     * @param  StatusDomainInterface  $statusDomain
+     * @param  ShortenUrlDomainInterface  $shortenUrlDomain
+     * @param  TemplateDomainInterface  $templateDomain
+     * @param  NumberCleaningDomainInterface  $numberCleaningDomain
+     * @param  SeparatedSuccessCountDomainInterface  $separatedSuccessCountDomain
      */
     public function __construct(
         private readonly SendDomainInterface $sendDomain,

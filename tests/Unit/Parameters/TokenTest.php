@@ -24,7 +24,7 @@ final class TokenTest extends TestCase
 
         Config::set('zettai-reach-sms.token', $valueToken);
 
-        $token = new Token();
+        $token = Token::create();
         $this->assertSame($valueToken, $token->value());
     }
 
@@ -32,13 +32,13 @@ final class TokenTest extends TestCase
     #[Group('unit')]
     #[Group('parameters')]
     #[Group('Token')]
-    public function 設定が見つからない場合例外を投げる()
+    public function 設定が見つからない場合例外を投げる(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
         Config::set('zettai-reach-sms.token', null);
 
-        new Token();
+        Token::create();
     }
 
     #[Test]
@@ -52,7 +52,7 @@ final class TokenTest extends TestCase
 
         Config::set('zettai-reach-sms.token', $value);
 
-        new Token();
+        Token::create();
     }
 
     /**

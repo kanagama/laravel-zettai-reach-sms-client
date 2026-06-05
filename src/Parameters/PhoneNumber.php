@@ -13,7 +13,7 @@ final class PhoneNumber implements ValueObjectInterface
     /**
      * @param string $value
      */
-    public function __construct(
+    private function __construct(
         private readonly string $value,
     ) {
         // 半角数字とハイフンのみで構成されていることを確認
@@ -29,5 +29,14 @@ final class PhoneNumber implements ValueObjectInterface
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @param  string  $value
+     * @return self
+     */
+    public static function create(string $value): self
+    {
+        return new self($value);
     }
 }

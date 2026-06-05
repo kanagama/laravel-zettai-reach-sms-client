@@ -19,7 +19,7 @@ final class MonthTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Month('2024-01');
+        Month::create('2024-01');
     }
 
     #[Test]
@@ -30,7 +30,7 @@ final class MonthTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new Month('202413');
+        Month::create('202413');
     }
 
     #[Test]
@@ -42,7 +42,7 @@ final class MonthTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $nextMonth = now()->addMonth()->format('Ym');
-        new Month($nextMonth);
+        Month::create($nextMonth);
     }
 
     #[Test]
@@ -52,7 +52,7 @@ final class MonthTest extends TestCase
     #[Group('value')]
     public function valueメソッドが正しく動作する(): void
     {
-        $month = new Month('202401');
+        $month = Month::create('202401');
 
         $this->assertSame('202401', $month->value());
     }

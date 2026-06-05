@@ -20,7 +20,7 @@ final class ReferenceDateTest extends TestCase
     public function ReferenceDateが正しく生成できる(
         string $value,
     ): void {
-        $referenceDate = new ReferenceDate($value);
+        $referenceDate = ReferenceDate::create($value);
         $this->assertSame($value, $referenceDate->value());
     }
 
@@ -49,7 +49,7 @@ final class ReferenceDateTest extends TestCase
     ): void {
         $this->expectException(InvalidArgumentException::class);
 
-        new ReferenceDate($value);
+        ReferenceDate::create($value);
     }
 
     /**
