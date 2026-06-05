@@ -63,7 +63,7 @@ ZETTAI_REACH_SMS_DRIVER="fake"
 - `ZETTAI_REACH_SMS_CLIENT_ID`: 契約クライアントID（半角数字）/ Contract client ID (numeric)
 - `ZETTAI_REACH_SMS_TIMEOUT_SECONDS`: タイムアウト時間（秒、デフォルト: 10）/ Timeout duration (seconds, default: 10)
 - `ZETTAI_REACH_SMS_CODE`: 契約クライアントSMSコード / Contract client SMS Code
-- `ZETTAI_REACH_SMS_DRIVER`: 送信ドライバの選択 ('api' or 'fake') / Select Sending Driver ('api' or 'fake')
+- `ZETTAI_REACH_SMS_DRIVER`: 送信ドライバの選択 ('api' or 'fake' or 'log') / Select Sending Driver ('api' or 'fake' or 'log')
     - fake: API送信を行わない / Do Not Send API Requests
     - log: API送信を行わない。ログを出力する / Do Not Send API Requests. Export Logs.
     - api: API送信を行う / Send API Requests
