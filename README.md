@@ -55,11 +55,13 @@ Add the following environment variables to your `.env` file.
 ZETTAI_REACH_SMS_TOKEN=your-api-token-here
 ZETTAI_REACH_SMS_CLIENT_ID=your-client-id-here
 ZETTAI_REACH_SMS_TIMEOUT_SECONDS=10
+ZETTAI_REACH_SMS_CODE=xxxxx
 ```
 
 - `ZETTAI_REACH_SMS_TOKEN`: アカウント登録時に発行されるアクセスキー（32文字の半角英数字）/ Access key issued during account registration (32 alphanumeric characters)
 - `ZETTAI_REACH_SMS_CLIENT_ID`: 契約クライアントID（半角数字）/ Contract client ID (numeric)
 - `ZETTAI_REACH_SMS_TIMEOUT_SECONDS`: タイムアウト時間（秒、デフォルト: 10）/ Timeout duration (seconds, default: 10)
+- `ZETTAI_REACH_SMS_CODE`: 契約クライアントSMSコード / Contract client SMS Code
 
 ### config ファイルの内容 / Configuration File Content
 
@@ -75,6 +77,7 @@ return [
     'token'           => env('ZETTAI_REACH_SMS_TOKEN', ''),
     'client_id'       => env('ZETTAI_REACH_SMS_CLIENT_ID', ''),
     'timeout_seconds' => (int) env('ZETTAI_REACH_SMS_TIMEOUT_SECONDS', 10),
+    'sms_code'        => env('ZETTAI_REACH_SMS_CODE', ''),
 ];
 ```
 
