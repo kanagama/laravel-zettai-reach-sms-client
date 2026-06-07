@@ -95,4 +95,34 @@ final class SmsDriver implements ValueObjectInterface
     {
         return new self($value);
     }
+
+    /**
+     * APIオブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createApi(): self
+    {
+        return new self(self::getApi());
+    }
+
+    /**
+     * fake オブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createFake(): self
+    {
+        return new self(self::getFake());
+    }
+
+    /**
+     * Log オブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createLog(): self
+    {
+        return new self(self::getLog());
+    }
 }

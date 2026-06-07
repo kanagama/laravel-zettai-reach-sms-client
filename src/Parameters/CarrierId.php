@@ -124,4 +124,44 @@ final class CarrierId implements ValueObjectInterface
     {
         return new self($value);
     }
+
+    /**
+     * docomo オブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createDocomo(): self
+    {
+        return new self(self::getDocomo());
+    }
+
+    /**
+     * Auオブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createAu(): self
+    {
+        return new self(self::getAu());
+    }
+
+    /**
+     * Softbankオブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createSoftbank(): self
+    {
+        return new self(self::getSoftbank());
+    }
+
+    /**
+     * 楽天オブジェクトを生成する
+     *
+     * @return self
+     */
+    public static function createRakuten(): self
+    {
+        return new self(self::getRakuten());
+    }
 }

@@ -117,4 +117,52 @@ final class CarrierIdTest extends TestCase
             CarrierId::getRakuten()  => '楽天',
         ], CarrierId::toArray());
     }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
+    #[Group('createAu')]
+    public function auオブジェクトを生成できる(): void
+    {
+        $carrierId = CarrierId::createAu();
+
+        $this->assertSame('101', $carrierId->value());
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
+    #[Group('createDocomo')]
+    public function docomoオブジェクトを生成できる(): void
+    {
+        $carrierId = CarrierId::createDocomo();
+
+        $this->assertSame('103', $carrierId->value());
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
+    #[Group('createSoftbank')]
+    public function softbankオブジェクトを生成できる(): void
+    {
+        $carrierId = CarrierId::createSoftbank();
+
+        $this->assertSame('105', $carrierId->value());
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('CarrierId')]
+    #[Group('createRakuten')]
+    public function rakutenオブジェクトを生成できる(): void
+    {
+        $carrierId = CarrierId::createRakuten();
+
+        $this->assertSame('106', $carrierId->value());
+    }
 }

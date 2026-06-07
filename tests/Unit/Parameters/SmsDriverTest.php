@@ -105,4 +105,40 @@ final class SmsDriverTest extends TestCase
             SmsDriver::getLog()  => 'log',
         ], SmsDriver::toArray());
     }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('SmsDriver')]
+    #[Group('createApi')]
+    public function apiオブジェクトを生成できる(): void
+    {
+        $smsDriver = SmsDriver::createApi();
+
+        $this->assertSame('api', $smsDriver->value());
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('SmsDriver')]
+    #[Group('createFake')]
+    public function fakeオブジェクトを生成できる(): void
+    {
+        $smsDriver = SmsDriver::createFake();
+
+        $this->assertSame('fake', $smsDriver->value());
+    }
+
+    #[Test]
+    #[Group('unit')]
+    #[Group('parameters')]
+    #[Group('SmsDriver')]
+    #[Group('createLog')]
+    public function logオブジェクトを生成できる(): void
+    {
+        $smsDriver = SmsDriver::createLog();
+
+        $this->assertSame('log', $smsDriver->value());
+    }
 }
